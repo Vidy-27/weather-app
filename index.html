@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App ☁️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="weather-container">
+    <div class="weather-card">
+
+      <div class="top-section">
+        <p class="eyebrow">YOUR DAILY WEATHER</p>
+        <h1>Weather Mood ☁️</h1>
+        <p class="subtitle">
+          Check the weather and plan your day.
+        </p>
+      </div>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Enter city name"
+        >
+        <button id="search-button">Search 🔍</button>
+      </div>
+
+      <p id="error-message" class="error-message"></p>
+
+      <section id="weather-result" class="weather-result hidden">
+
+        <p id="location" class="location"></p>
+
+        <div class="weather-icon" id="weather-icon">☀️</div>
+
+        <h2 id="temperature">--°C</h2>
+
+        <p id="weather-description">Weather condition</p>
+
+        <div class="weather-details">
+
+          <div class="detail-box">
+            <span>💧</span>
+            <p>Humidity</p>
+            <strong id="humidity">--%</strong>
+          </div>
+
+          <div class="detail-box">
+            <span>💨</span>
+            <p>Wind Speed</p>
+            <strong id="wind-speed">-- km/h</strong>
+          </div>
+
+        </div>
+
+        <p id="weather-message" class="weather-message"></p>
+
+      </section>
+
+      <p class="footer-text">
+        Made with curiosity and a little sunshine ✨
+      </p>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

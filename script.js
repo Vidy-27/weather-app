@@ -12,8 +12,7 @@ const humidityElement = document.getElementById("humidity");
 const windSpeedElement = document.getElementById("wind-speed");
 const weatherMessage = document.getElementById("weather-message");
 
-// Paste your actual OpenWeather API key inside the quotation marks.
-const API_KEY = "PASTE_YOUR_ACTUAL_API_KEY_HERE";
+const API_KEY = "6e9dc80ad63a2b96fd2d889962ead928";
 
 searchButton.addEventListener("click", searchWeather);
 

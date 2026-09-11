@@ -1,8 +1,8 @@
-# Weather Mood ☁️
+# Weather Mood 
 
 A cute and responsive weather application that displays real-time weather information using the OpenWeather API.
 
-## ✨ Features
+## Features
 
 - Search weather by city name
 - Display current temperature
@@ -13,22 +13,14 @@ A cute and responsive weather application that displays real-time weather inform
 - Responsive design
 - Enter key support for searching
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - HTML
 - CSS
 - JavaScript
 - OpenWeather API
 
-## 🌐 Live Demo
-
-Add your GitHub Pages link here.
-
-## 📸 Preview
-
-Add a screenshot of the application here.
-
-## 🌱 What I Learned
+## What I Learned
 
 - Working with APIs
 - Using JavaScript `fetch()`
@@ -38,7 +30,7 @@ Add a screenshot of the application here.
 - Handling errors
 - Creating a responsive user interface
 
-## 🚀 Future Improvements
+## Future Improvements
 
 - Add a five-day forecast
 - Add weather icons

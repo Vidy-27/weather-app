@@ -12,44 +12,62 @@ const humidityElement = document.getElementById("humidity");
 const windSpeedElement = document.getElementById("wind-speed");
 const weatherMessage = document.getElementById("weather-message");
 
-// Paste your OpenWeather API key between the quotation marks.
-const API_KEY = "6e9dc80ad63a2b96fd2d889962ead928";
+// Paste your actual OpenWeather API key inside the quotation marks.
+const API_KEY = "PASTE_YOUR_ACTUAL_API_KEY_HERE";
 
-searchButton.addEventListener("click", function() {
-  const city = cityInput.value.trim();
-
-  if (city === "") {
-    showError("Please enter a city name 🌸");
-    return;
-  }
-
-  getWeather(city);
-});
+searchButton.addEventListener("click", searchWeather);
 
 cityInput.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-    searchButton.click();
+    searchWeather();
   }
 });
 
-async function getWeather(city) {
+async function searchWeather() {
+  const city = cityInput.value.trim();
+
   errorMessage.textContent = "";
   weatherResult.classList.add("hidden");
 
+  if (city === "") {
+    errorMessage.textContent = "Please enter a city name 🌸";
+    return;
+  }
+
+  if (API_KEY === "6e9dc80ad63a2b96fd2d889962ead928") {
+    errorMessage.textContent = "Please add your OpenWeather API key first.";
+    return;
+  }
+
+  searchButton.disabled = true;
+  searchButton.textContent = "Searching...";
+
   try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-    );
+    const url =
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
 
-    if (!response.ok) {
-      throw new Error("City not found");
-    }
-
+    const response = await fetch(url);
     const data = await response.json();
 
+    if (response.status === 401) {
+      throw new Error("Your API key is invalid or not active yet.");
+    }
+
+    if (response.status === 404) {
+      throw new Error("City not found. Please check the spelling.");
+    }
+
+    if (!response.ok) {
+      throw new Error("Something went wrong. Please try again.");
+    }
+
     displayWeather(data);
+
   } catch (error) {
-    showError("We couldn't find that city. Please check the spelling ☁️");
+    errorMessage.textContent = error.message;
+  } finally {
+    searchButton.disabled = false;
+    searchButton.textContent = "Search 🔍";
   }
 }
 
@@ -99,7 +117,11 @@ function getWeatherIcon(weatherType) {
     return "❄️";
   }
 
-  if (weatherType === "Mist" || weatherType === "Fog" || weatherType === "Haze") {
+  if (
+    weatherType === "Mist" ||
+    weatherType === "Fog" ||
+    weatherType === "Haze"
+  ) {
     return "🌫️";
   }
 
@@ -127,9 +149,5 @@ function getWeatherMessage(weatherType) {
     return "A chilly day! Stay warm and cozy! ❄️";
   }
 
-  return "Have a wonderful day, whatever the weather brings!";
-}
-
-function showError(message) {
-  errorMessage.textContent = message;
+  return "Have a wonderful day, whatever the weather brings! 🌸";
 }
